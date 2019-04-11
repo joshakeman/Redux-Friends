@@ -5,3 +5,6 @@ export {
     FETCH_DATA_FAILURE,
     getData
   } from './friendData'
+  export {UPDATE_DATA_START, 
+  UPDATE_DATA_SUCCESS,
+  UPDATE_DATA_FAILURE, addFriend} from './addFriends'
