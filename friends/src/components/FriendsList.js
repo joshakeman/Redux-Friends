@@ -1,7 +1,40 @@
 import React from 'react'
+import { getData } from '../actions' 
+import { withRouter } from 'react-router-dom'
+import { connect } from 'react-redux'
 
-const FriendsList = () => {
-    return <h1>Friends List</h1>
+class FriendsList extends React.Component {
+    compoonentDidMount() {
+        console.log('calling get data')
+        this.props.getData()
+    }
+
+    render() {
+        console.log(this.props)
+        return (
+            <div>
+                <h1>Friends Page</h1>
+                <button onClick={this.props.getData()}>Retrieve Friends</button>
+                <div>
+                    {this.props.friends.map(friend => (
+                        <p key={friend.id}>{friend.name}</p>)
+                    )}
+                </div>
+            </div>
+        )
+    }
 }
 
-export default FriendsList
+const mapStateToProps = state => {
+    console.log(state)
+    return {
+        friends: state.friends
+    }
+}
+
+export default withRouter(
+    connect(
+        mapStateToProps,
+        { getData }
+    )(FriendsList)
+)
